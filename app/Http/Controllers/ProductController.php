@@ -122,4 +122,17 @@ class ProductController extends Controller
             ], Response::HTTP_NOT_FOUND);
         }
     }
+
+    // Search Product
+    public function search(string $name)
+    {
+        $product = Product::where('name', 'Like', '%' . $name . '%')->get();
+
+        return response()->json([
+            'success' => true,
+            'data' => $product,
+            'message' => 'Success!',
+            'status' => Response::HTTP_OK
+        ], Response::HTTP_OK);
+    }
 }
