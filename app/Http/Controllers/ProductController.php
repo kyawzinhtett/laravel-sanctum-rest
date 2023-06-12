@@ -77,7 +77,7 @@ class ProductController extends Controller
                 'price' => 'required'
             ]);
 
-            $product = Product::where('id', $id)->get();
+            $product = Product::findOrFail($id);
 
             if ($product) {
                 $product->update($request->all());
@@ -103,7 +103,7 @@ class ProductController extends Controller
     public function destroy(string $id)
     {
         try {
-            $product = Product::where('id', $id)->get();
+            $product = Product::findOrFail($id);
 
             if ($product) {
                 $product->delete();
